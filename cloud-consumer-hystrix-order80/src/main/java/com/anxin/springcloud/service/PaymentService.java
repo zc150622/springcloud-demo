@@ -1,4 +1,4 @@
-package com.anxin.springcloud.fegin;
+package com.anxin.springcloud.service;
 
 import com.anxin.springcloud.entities.Result;
 import com.anxin.springcloud.pojo.Payment;
@@ -11,22 +11,21 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @author ZC
  */
 @Component
-@FeignClient("CLOUD-PAYMENT-SERVICE")
+@FeignClient("CLOUD-PAYMENT-HYSTRIX-SERVICE")
 public interface PaymentService {
-
     /**
-     *  测试feign
+     *  超时接口
      * @param id /
      * @return /
      */
-    @GetMapping("/payment/get/{id}")
-    Result<Payment> getPayment(@PathVariable("id") Long id);
+    @GetMapping("/payment/hystrix/timeout/{id}")
+     String timeout(@PathVariable("id") Integer id);
 
     /**
-     *  ddd
+     *  正常接口
+     * @param id /
      * @return /
      */
-    @GetMapping("/payment/open/feign/timeOut")
-    String openFeignTimeOut();
-
+    @GetMapping("/payment/hystrix/ok/{id}")
+     String ok(@PathVariable("id") Integer id);
 }
