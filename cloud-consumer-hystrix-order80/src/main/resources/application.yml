@@ -9,12 +9,13 @@ eureka:
   client:
     register-with-eureka: false
     service-url:
-      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
-
-
-ribbon:
-  ReadTimeout: 5000
-  ConnectTimeout: 5000
+      defaultZone: http://eureka7001.com:7001/eureka/
 logging:
   level:
     com.anxin.springcloud.fegin.PaymentService: debug
+feign:
+  hystrix:
+    enabled: true
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000

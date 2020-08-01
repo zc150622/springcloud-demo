@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @author ZC
  */
 @Component
-@FeignClient("CLOUD-PAYMENT-HYSTRIX-SERVICE")
+@FeignClient(value = "CLOUD-PAYMENT-HYSTRIX-SERVICE",fallbackFactory = PaymentFallBackFactory.class)
 public interface PaymentService {
     /**
      *  超时接口
